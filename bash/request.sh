@@ -4,6 +4,14 @@
 # Source - https://github.com/sararob/ml-talk-demos/blob/master/speech/request.sh
 # @sararob - Sara Robinson
 # Updated by Gary Ascuy
+# 
+# Create Create Google API KEY
+# https://support.google.com/googleapi/answer/6158862?hl=en
+# !do not forget setup GOOGLE_API_KEY env variable  
+#
+# Install Sox (Sound eXchange) & Manual
+# http://sox.sourceforge.net/
+# http://www.thegeekstuff.com/2009/05/sound-exchange-sox-15-examples-to-manipulate-audio-files
 #
 
 # Record the Audio
@@ -19,7 +27,7 @@ cat <<EOF > $FILENAME
     "encoding":"FLAC",
     "sampleRateHertz":16000,
     "profanityFilter": true,
-    "languageCode": "en-US",
+    "languageCode": "es-BO",
     "speechContexts": {
       "phrases": ['']
     },
@@ -32,4 +40,4 @@ cat <<EOF > $FILENAME
 EOF
 
 # Call to Google API
-curl -s -X POST -H "Content-Type: application/json" --data-binary @${FILENAME} https://speech.googleapis.com/v1/speech:recognize?key=YOUR_API_KEY
+curl -s -X POST -H "Content-Type: application/json" --data-binary @${FILENAME} https://speech.googleapis.com/v1/speech:recognize?key=$GOOGLE_API_KEY
