@@ -1,6 +1,7 @@
 
-# Cache files 
+# Cache files
 
 bash/*.json
 bash/*.flac
 golang/main
+.DS_Store
