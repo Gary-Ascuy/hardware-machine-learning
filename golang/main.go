@@ -19,27 +19,6 @@ import (
 var imagePath = flag.String("image", "./assets/orange.png", "Path to image (gif, jpeg, png)")
 var histogramFlag = flag.Bool("histo", false, "Show image histogram")
 
-// Main Entry Point
-func main() {
-  flag.Parse()
-  fmt.Print("Loading: ", *imagePath)
-
-  if infile, err := os.Open(*imagePath); err == nil {
-    defer infile.Close()
-
-    if img, _, imgErr := image.Decode(infile); imgErr == nil {
-      fmt.Println(", Ready !!!")
-      bounds := img.Bounds()
-
-      // Histogram
-      if *histogramFlag { Histogram(bounds, img) }
-
-      // Predict
-      Predict(bounds, img)
-    } else { flag.Parse() }
-  } else { flag.Parse() }
-}
-
 // Prints Predict information
 func Predict(bounds image.Rectangle, img image.Image) {
   var yellow uint32 = 0
@@ -84,4 +63,25 @@ func Histogram(bounds image.Rectangle, img image.Image) {
 func TernaryOperator(expresion bool, a string, b string) string {
   if (expresion) { return a }
   return b
+}
+
+// Main Entry Point
+func main() {
+  flag.Parse()
+  fmt.Print("Loading: ", *imagePath)
+
+  if infile, err := os.Open(*imagePath); err == nil {
+    defer infile.Close()
+
+    if img, _, imgErr := image.Decode(infile); imgErr == nil {
+      fmt.Println(", Ready !!!")
+      bounds := img.Bounds()
+
+      // Histogram
+      if *histogramFlag { Histogram(bounds, img) }
+
+      // Predict
+      Predict(bounds, img)
+    } else { flag.Parse() }
+  } else { flag.Parse() }
 }
