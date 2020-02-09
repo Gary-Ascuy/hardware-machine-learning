@@ -18,12 +18,12 @@ import (
 // Command Line Interface - Inputs
 var imagePath = flag.String("image", "./assets/orange.png", "Path to image (gif, jpeg, png)")
 var histogramFlag = flag.Bool("histo", false, "Show image histogram")
+var half uint32 = 32767
 
 // Prints Predict information
 func Predict(bounds image.Rectangle, img image.Image) {
   var yellow uint32 = 0
   var red uint32 = 0
-  var half uint32 = 32767
 
   for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
     for x := bounds.Min.X; x < bounds.Max.X; x++ {
